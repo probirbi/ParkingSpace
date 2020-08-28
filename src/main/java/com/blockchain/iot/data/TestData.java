@@ -19,27 +19,23 @@ public class TestData {
            Random random = new Random();
             int rangeMin = 0;
             int rangeMax = 500;
-
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
             int totalSpace = rangeMax;
             int parkedSpace = random.nextInt((rangeMax - rangeMin) + 1) + rangeMin;
             int freeSpace = totalSpace - parkedSpace;
+            String result = "";
             try {
                 String url = "http://localhost:8083/parkingspaces";
-
-                String result = "";
-                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
                 HttpPost httpPost = new HttpPost(url);
                 httpPost.setHeader("Content-type", "application/json");
                 String json = "{" +
                         "\"timestamp\":" + "\"" + sdf.format(new Date()) + "\"," +
-                        "\"totalSpace\":" + "" +  totalSpace +","+
-                        "\"parkedSpace\":" + "" +  parkedSpace +","+
+                        "\"totalSpace\":" + "" + totalSpace + "," +
+                        "\"parkedSpace\":" + "" + parkedSpace + "," +
                         "\"freeSpace\":" + "" + freeSpace +
                         "}";
-
                 System.out.println(json);
                 httpPost.setEntity(new StringEntity(json));
-
                 CloseableHttpClient closeableHttpClient = HttpClients.createDefault();
                 CloseableHttpResponse closeableHttpResponse = closeableHttpClient.execute(httpPost);
                 HttpEntity entity = closeableHttpResponse.getEntity();
