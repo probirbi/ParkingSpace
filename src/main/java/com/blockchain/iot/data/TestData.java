@@ -39,6 +39,7 @@ public class TestData {
                 CloseableHttpClient closeableHttpClient = HttpClients.createDefault();
                 CloseableHttpResponse closeableHttpResponse = closeableHttpClient.execute(httpPost);
                 HttpEntity entity = closeableHttpResponse.getEntity();
+                System.out.println("Transaction: "+i);
                 if (entity != null) {
                     result = EntityUtils.toString(entity);
                     System.out.println(result);

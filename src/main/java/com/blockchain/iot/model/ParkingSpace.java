@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 public class ParkingSpace {
 
-    private String timestamp;
+    private String timeStamp;
     private int totalSpace;
     private int parkedSpace;
     private int freeSpace;
